@@ -1,10 +1,12 @@
 package api
 
-import ("github.com/gin-gonic/gin"
-"main/model"
-	_"time"
+import (
+	"main/db"
+	"main/model"
+	"time"
+	_ "time"
 
-
+	"github.com/gin-gonic/gin"
 )
 
 func SetupAuthenAPI(router *gin.Engine) {
@@ -21,7 +23,15 @@ func login(c *gin.Context) {
 
 func register(c *gin.Context) {
 	var user model.User
-	if c.ShouldBind(&user) == nil {	
-		c.JSON(200, gin.H{"result": "register", "data": user})
-	}	
+	if c.ShouldBind(&user) == nil {		
+		// user.Password, _ = hashPassword(user.Password)
+		user.CreatedAt = time.Now()						
+		if err := db.GetDB().Create(&user).Error; err != nil {			
+			c.JSON(200, gin.H{"result": "nok", "error": err})
+		}else{
+			c.JSON(200, gin.H{"result": "ok", "data": user})
+		}
+	} else {
+		c.JSON(401, gin.H{"status": "unable to bind data"})
+	}		
 }
