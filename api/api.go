@@ -8,6 +8,6 @@ func Setup(router *gin.Engine) {
 
 	// db.SetupDB()
 	SetupAuthenAPI(router)
-	// SetupProductAPI(router)
+	SetupProductAPI(router)
 	// SetupTransactionAPI(router)
 }

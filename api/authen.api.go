@@ -11,9 +11,9 @@ func SetupAuthenAPI(router *gin.Engine) {
 }
 
 func login(c *gin.Context) {
-	c.JSON(401, gin.H{"result": "login"})
+	c.JSON(200, gin.H{"result": "login"})
 }
 
 func register(c *gin.Context) {
-	c.JSON(401, gin.H{"result": "register"})
+	c.JSON(200, gin.H{"result": "register"})
 }
