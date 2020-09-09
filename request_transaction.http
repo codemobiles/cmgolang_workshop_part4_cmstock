@@ -1,0 +1,12 @@
+
+### Get Transaction 
+GET http://localhost:8081/api/v2/transaction HTTP/1.1
+
+### Create Tranaction 
+POST http://localhost:8081/api/v2/transaction HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password" : "1234"
+}
