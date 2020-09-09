@@ -19,7 +19,21 @@ func SetupAuthenAPI(router *gin.Engine) {
 }
 
 func login(c *gin.Context) {
-	c.JSON(200, gin.H{"result": "login"})
+	var user model.User
+	
+	if c.ShouldBind(&user) == nil {
+		var queryUser model.User		
+		if err := db.GetDB().First(&queryUser, "username = ?", user.Username).Error; err != nil {							
+			c.JSON(200, gin.H{"result": "nok", "error": err})
+		}else if (checkPasswordHash(user.Password, queryUser.Password) == false){
+			c.JSON(200, gin.H{"result": "nok", "error": "invalid password"})
+		}else{			
+			c.JSON(200, gin.H{"result": "ok", "data": user})
+		}
+		
+	} else {
+		c.JSON(401, gin.H{"status": "unable to bind data"})
+	}	
 }
 
 func register(c *gin.Context) {
