@@ -5,7 +5,7 @@ GET http://localhost:8081/api/v2/product HTTP/1.1
 
 ### Get Product with Token
 GET http://localhost:8081/api/v2/product HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk3OTIzMzgsImlkIjoxLCJsZXZlbCI6Im5vcm1hbCIsInVzZXJuYW1lIjoiYWRtaW4ifQ.UEp9XrAJZWpQ2PBjosZOk2TCYvB3UtDIiBY44mnAH4Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk3OTM1NTEsImlkIjoxLCJsZXZlbCI6Im5vcm1hbCIsInVzZXJuYW1lIjoiYWRtaW4ifQ.5Gf4RchQ_9-o9amZlo-1ig3cka7eF74PRNc6sylJyj4
 
 
 
