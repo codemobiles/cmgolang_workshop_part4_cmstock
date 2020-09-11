@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
     "username": "admin",
-    "password" : "1234d"
+    "password" : "1234"
 }
 
 ### Register 

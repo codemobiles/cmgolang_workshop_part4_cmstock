@@ -6,7 +6,7 @@ import (
 	"time"
 	_ "time"
 	"golang.org/x/crypto/bcrypt"
-
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,8 +27,17 @@ func login(c *gin.Context) {
 			c.JSON(200, gin.H{"result": "nok", "error": err})
 		}else if (checkPasswordHash(user.Password, queryUser.Password) == false){
 			c.JSON(200, gin.H{"result": "nok", "error": "invalid password"})
-		}else{			
-			c.JSON(200, gin.H{"result": "ok", "data": user})
+		}else{		
+
+			atClaims := jwt.MapClaims{}
+			atClaims["id"] = queryUser.ID
+			atClaims["username"] = queryUser.Username
+			atClaims["level"] = queryUser.Level
+			atClaims["exp"] = time.Now().Add(time.Minute * 15).Unix()
+			at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
+			token, _ := at.SignedString([]byte("1234"))
+
+			c.JSON(200, gin.H{"result": "ok", "token": token})
 		}
 		
 	} else {
