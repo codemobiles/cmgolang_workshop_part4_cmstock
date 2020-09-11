@@ -6,10 +6,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// SetupProductAPI - call this method to setup product route group
 func SetupProductAPI(router *gin.Engine) {
 	productAPI := router.Group("/api/v2")
 	{
-		productAPI.GET("/product", interceptor.GeneralInterceptor1, getProduct)
+		productAPI.GET("/product", interceptor.JwtVerify, getProduct)
 		productAPI.POST("/product", createProduct)
 	}
 }

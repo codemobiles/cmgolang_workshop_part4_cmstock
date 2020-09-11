@@ -30,10 +30,14 @@ func login(c *gin.Context) {
 		}else{		
 
 			atClaims := jwt.MapClaims{}
+
+			// Payload begin
 			atClaims["id"] = queryUser.ID
 			atClaims["username"] = queryUser.Username
 			atClaims["level"] = queryUser.Level
 			atClaims["exp"] = time.Now().Add(time.Minute * 15).Unix()
+			// Payload end
+
 			at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
 			token, _ := at.SignedString([]byte("1234"))
 
