@@ -27,6 +27,8 @@ func createProduct(c *gin.Context) {
 	product.Name = c.PostForm("name")
 	product.Stock, _ = strconv.ParseInt(c.PostForm("stock"), 10, 64)
 	product.Price, _ = strconv.ParseFloat(c.PostForm("price"), 64)
+	image, _ := c.FormFile("image")	
+	product.Image = image.Filename
 	c.JSON(200, gin.H{"result": product})
 
 }
