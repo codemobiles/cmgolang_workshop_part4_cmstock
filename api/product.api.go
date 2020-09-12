@@ -2,6 +2,8 @@ package api
 
 import (
 	"main/interceptor"
+	"main/model"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,5 +22,11 @@ func getProduct(c *gin.Context) {
 }
 
 func createProduct(c *gin.Context) {
-	c.JSON(200, gin.H{"result": "create product"})
+
+	product := model.Product{}
+	product.Name = c.PostForm("name")
+	product.Stock, _ = strconv.ParseInt(c.PostForm("stock"), 10, 64)
+	product.Price, _ = strconv.ParseFloat(c.PostForm("price"), 64)
+	c.JSON(200, gin.H{"result": product})
+
 }
