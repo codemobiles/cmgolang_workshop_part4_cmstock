@@ -6,6 +6,7 @@ import (
 	"main/interceptor"
 	"main/model"
 	"mime/multipart"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -20,6 +21,7 @@ func SetupProductAPI(router *gin.Engine) {
 	{
 		productAPI.GET("/product", interceptor.JwtVerify, getProduct)
 		productAPI.POST("/product" /*interceptor.JwtVerify,*/, createProduct)
+		productAPI.PUT("/product" /*interceptor.JwtVerify,*/, editProduct)
 	}
 }
 
@@ -62,6 +64,21 @@ func createProduct(c *gin.Context) {
 	image, _ := c.FormFile("image")
 	saveImage(image, &product, c)
 
-	c.JSON(200, gin.H{"result": product})
+	c.JSON(http.StatusOK, gin.H{"result": product})
+
+}
+
+func editProduct(c *gin.Context) {
+	var product model.Product
+	id, _ := strconv.ParseInt(c.PostForm("id"), 10, 32)
+	product.ID = uint(id)
+	product.Name = c.PostForm("name")
+	product.Stock, _ = strconv.ParseInt(c.PostForm("stock"), 10, 64)
+	product.Price, _ = strconv.ParseFloat(c.PostForm("price"), 64)
+
+	db.GetDB().Save(&product)
+	image, _ := c.FormFile("image")
+	saveImage(image, &product, c)
+	c.JSON(http.StatusOK, gin.H{"result": product})
 
 }
