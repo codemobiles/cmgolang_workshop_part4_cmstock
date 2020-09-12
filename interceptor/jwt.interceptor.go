@@ -46,7 +46,7 @@ func JwtVerify(c *gin.Context) {
 		c.Set("jwt_level", claims["level"])
 		c.Next()
 	} else {
-		c.JSON(http.StatusOK, gin.H{"result": "nok", "error": err})
+		c.JSON(http.StatusOK, gin.H{"result": "nok", "message": "invalid token", "error": err})
 		c.Abort()
 	}
 }

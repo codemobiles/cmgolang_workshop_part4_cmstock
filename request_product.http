@@ -12,6 +12,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk3OTM1N
 
 ### Create 
 POST http://localhost:8081/api/v2/product HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk4OTg1OTQsImlkIjoxLCJsZXZlbCI6Im5vcm1hbCIsInVzZXJuYW1lIjoiYWRtaW4ifQ.e8ZcnQFnye_DldUnzyqfth37SVB0hp8ZEjvRCy7th4s
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
