@@ -20,6 +20,7 @@ func SetupProductAPI(router *gin.Engine) {
 	productAPI := router.Group("/api/v2")
 	{
 		productAPI.GET("/product" /*interceptor.JwtVerify,*/, getProduct)
+		productAPI.GET("/product/:id" /*interceptor.JwtVerify,*/, getProductByID)
 		productAPI.POST("/product" /*interceptor.JwtVerify,*/, createProduct)
 		productAPI.PUT("/product" /*interceptor.JwtVerify,*/, editProduct)
 	}
@@ -28,6 +29,13 @@ func SetupProductAPI(router *gin.Engine) {
 func getProduct(c *gin.Context) {
 	var product []model.Product
 	db.GetDB().Find(&product)
+	c.JSON(200, product)
+}
+
+
+func getProductByID(c *gin.Context) {
+	var product model.Product
+	db.GetDB().Where("id = ?", c.Param("id")).First(&product)
 	c.JSON(200, product)
 }
 

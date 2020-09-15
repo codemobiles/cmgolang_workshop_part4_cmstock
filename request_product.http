@@ -9,6 +9,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk3OTM1N
 
 
 
+### Get Product by ID 
+GET http://localhost:8081/api/v2/product/40 HTTP/1.1
+
+
 
 ### Create 
 POST http://localhost:8081/api/v2/product HTTP/1.1
