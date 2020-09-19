@@ -2,6 +2,7 @@ package api
 
 import (
 	"main/db"
+	"main/interceptor"
 	"main/model"
 	"net/http"
 	"time"
@@ -13,7 +14,7 @@ func SetupTransactionAPI(router *gin.Engine) {
 	transactionAPI := router.Group("/api/v2")
 	{
 		transactionAPI.GET("/transaction", getTransaction)
-		transactionAPI.POST("/transaction", createTransaction)
+		transactionAPI.POST("/transaction", interceptor.JwtVerify,  createTransaction)
 	}
 }
 
@@ -26,6 +27,7 @@ func getTransaction(c *gin.Context) {
 func createTransaction(c *gin.Context) {
 	var transaction model.Transaction
 	if err := c.ShouldBind(&transaction); err == nil {
+		transaction.StaffID = c.GetString("jwt_staff_id")
 		transaction.CreatedAt = time.Now()
 		db.GetDB().Create(&transaction)
 		c.JSON(http.StatusOK, gin.H{"result": "ok", "data": transaction})
