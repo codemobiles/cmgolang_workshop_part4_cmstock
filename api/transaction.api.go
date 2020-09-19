@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupTransactionAPI(router *gin.Engine)  {
+func SetupTransactionAPI(router *gin.Engine) {
 	transactionAPI := router.Group("/api/v2")
 	{
 		transactionAPI.GET("/transaction", getTransaction)
@@ -17,15 +17,16 @@ func SetupTransactionAPI(router *gin.Engine)  {
 	}
 }
 
-
 func getTransaction(c *gin.Context) {
-	c.String(http.StatusOK, "List Transaction")
+	var transactions []model.Transaction
+	db.GetDB().Find(&transactions)
+	c.JSON(200, transactions)
 }
 
 func createTransaction(c *gin.Context) {
-	var transaction model.Transaction	
-	if err := c.ShouldBind(&transaction); err == nil {		
-		transaction.CreatedAt = time.Now()		
+	var transaction model.Transaction
+	if err := c.ShouldBind(&transaction); err == nil {
+		transaction.CreatedAt = time.Now()
 		db.GetDB().Create(&transaction)
 		c.JSON(http.StatusOK, gin.H{"result": "ok", "data": transaction})
 	} else {
