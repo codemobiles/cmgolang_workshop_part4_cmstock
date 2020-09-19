@@ -25,19 +25,34 @@ func SetupProductAPI(router *gin.Engine) {
 		productAPI.PUT("/product" /*interceptor.JwtVerify,*/, editProduct)
 	}
 }
-
+/*
 func getProduct(c *gin.Context) {
 	var product []model.Product
 	db.GetDB().Find(&product)
 	c.JSON(200, product)
 }
+*/
 
+func getProduct(c *gin.Context) {
+	var product []model.Product
+
+	keyword := c.Query("keyword")
+	if keyword != "" {
+		keyword = fmt.Sprintf("%%%s%%", keyword)
+		db.GetDB().Where("name like ?", keyword).Find(&product)
+	} else {
+		db.GetDB().Find(&product)
+	}
+	c.JSON(200, product)
+
+}
 
 func getProductByID(c *gin.Context) {
 	var product model.Product
 	db.GetDB().Where("id = ?", c.Param("id")).First(&product)
 	c.JSON(200, product)
 }
+
 
 func fileExists(filename string) bool {
 	info, err := os.Stat(filename)

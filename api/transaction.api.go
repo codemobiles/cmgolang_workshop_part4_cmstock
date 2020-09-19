@@ -1,7 +1,10 @@
 package api
 
 import (
+	"main/db"
+	"main/model"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,5 +23,12 @@ func getTransaction(c *gin.Context) {
 }
 
 func createTransaction(c *gin.Context) {
-	c.String(http.StatusOK, "Create Transaction")
+	var transaction model.Transaction	
+	if err := c.ShouldBind(&transaction); err == nil {		
+		transaction.CreatedAt = time.Now()		
+		db.GetDB().Create(&transaction)
+		c.JSON(http.StatusOK, gin.H{"result": "ok", "data": transaction})
+	} else {
+		c.JSON(404, gin.H{"result": "nok"})
+	}
 }

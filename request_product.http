@@ -7,6 +7,8 @@ GET http://localhost:8081/api/v2/product HTTP/1.1
 GET http://localhost:8081/api/v2/product HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk3OTM1NTEsImlkIjoxLCJsZXZlbCI6Im5vcm1hbCIsInVzZXJuYW1lIjoiYWRtaW4ifQ.5Gf4RchQ_9-o9amZlo-1ig3cka7eF74PRNc6sylJyj4
 
+### Get Product with keyword
+GET http://localhost:8081/api/v2/product?keyword=Ar HTTP/1.1
 
 
 ### Get Product by ID 
@@ -22,7 +24,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="name";
 
-Arduino board
+ReactJS 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="stock";
 
