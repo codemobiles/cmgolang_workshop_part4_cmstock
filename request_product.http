@@ -5,7 +5,7 @@ GET http://localhost:8081/api/v2/product HTTP/1.1
 
 ### Get Product with Token
 GET http://localhost:8081/api/v2/product HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk3OTM1NTEsImlkIjoxLCJsZXZlbCI6Im5vcm1hbCIsInVzZXJuYW1lIjoiYWRtaW4ifQ.5Gf4RchQ_9-o9amZlo-1ig3cka7eF74PRNc6sylJyj4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDA1NzY4MDYsImlkIjoxLCJsZXZlbCI6Im5vcm1hbCIsInVzZXJuYW1lIjoibGVrIn0.YfNSMr4HsbD_TQLCXMTtBoUYHBRxc66HiboGT4_fUr4
 
 ### Get Product with keyword
 GET http://localhost:8081/api/v2/product?keyword=Ar HTTP/1.1
@@ -18,17 +18,17 @@ GET http://localhost:8081/api/v2/product/40 HTTP/1.1
 
 ### Create 
 POST http://localhost:8081/api/v2/product HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1OTk4OTg1OTQsImlkIjoxLCJsZXZlbCI6Im5vcm1hbCIsInVzZXJuYW1lIjoiYWRtaW4ifQ.e8ZcnQFnye_DldUnzyqfth37SVB0hp8ZEjvRCy7th4s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDA1Nzc2MzksImlkIjoxLCJsZXZlbCI6Im5vcm1hbCIsInVzZXJuYW1lIjoiYWRtaW4ifQ.XlY0z7b5J3HVeGOT7EWt6w_vIX_QxjB34WOdJr7GFwY
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="name";
 
-ReactJS 
+Angular 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="stock";
 
-100
+300
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="price";
 
