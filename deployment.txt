@@ -1,0 +1,4 @@
+- go build
+- go build -ldflags "-s -w"
+- using env:   export GIN_MODE=release
+- using code:  gin.SetMode(gin.ReleaseMode)
