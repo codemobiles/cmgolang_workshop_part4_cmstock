@@ -2,3 +2,10 @@
 - go build -ldflags "-s -w"
 - using env:   export GIN_MODE=release
 - using code:  gin.SetMode(gin.ReleaseMode)
+
+
+
+
+# Deployment on Heroku
+1. Create a Pipeline by github
+2. Create Procfile
